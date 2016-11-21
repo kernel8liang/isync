@@ -34,7 +34,7 @@ fisrt time to use it, you shoud to run ```is_config``` command, it will help you
 >```DEFAULT_HOSTS_FILE```: list the machine's ip you want to sync. <br>
 >```DEFAULT_IP```: ip address you working on, other machines will pull source code from this ip. <br>
 
-any of these variables can be covered from is command parameters.
+any of these variables can be covered from "is" command parameters.
 
 
 >```is [-w worksapce] [-n projectName] [-h hostsfile] [-i ip_address] [-u user] [-r]``` <br>
@@ -46,4 +46,4 @@ any of these variables can be covered from is command parameters.
 >```-r``` if use this parameter, it will clean remote machine's repo and clone a new one.<br>
 
 
-for example you can ```is -n myproject``` to sync different myproject in the workspace which is not same as the default one.
+for example you can ```is -n myproject``` to sync different project "myproject" in the workspace which is not same as the default one.
