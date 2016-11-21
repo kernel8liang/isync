@@ -28,22 +28,22 @@ note: you need setup ssh key access before use this tool, which shoud be done wi
 
 fisrt time to use it, you shoud to run ```is_config``` command, it will help you to set enviroment variables.
 
->```DEFAULT_USER```:  the user name you used in your distributed machines, it shoud be same over the cluster.
->```DEFAULT_WORKSPACE```: the directory which contain your projects.
->```DEFAULT_PROJECT_NAME```: the project name.
->```DEFAULT_HOSTS_FILE```: list the machine's ip you want to sync.
->```DEFAULT_IP```: ip address you working on, other machines will pull source code from this ip.
+>```DEFAULT_USER```:  the user name you used in your distributed machines, it shoud be same over the cluster. <br>
+>```DEFAULT_WORKSPACE```: the directory which contain your projects. <br>
+>```DEFAULT_PROJECT_NAME```: the project name. <br>
+>```DEFAULT_HOSTS_FILE```: list the machine's ip you want to sync. <br>
+>```DEFAULT_IP```: ip address you working on, other machines will pull source code from this ip. <br>
 
 any of these variables can be covered from is command parameters.
 
 
->```is [-w worksapce] [-n projectName] [-h hostsfile] [-i ip_address] [-u user] [-r]```
->```-w``` specify your workspace,
->```-n``` specify your project name,
->```-h``` specify your hosts file,
->```-i``` specify your ip,
->```-u``` spccify your name,
->```-r``` if use this parameter, it will clean remote machine's repo and clone a new one.
+>```is [-w worksapce] [-n projectName] [-h hostsfile] [-i ip_address] [-u user] [-r]``` <br>
+>```-w``` specify your workspace,<br>
+>```-n``` specify your project name,<br>
+>```-h``` specify your hosts file,<br>
+>```-i``` specify your ip,<br>
+>```-u``` spccify your name,<br>
+>```-r``` if use this parameter, it will clean remote machine's repo and clone a new one.<br>
 
 
 for example you can ```is -n myproject``` to sync different myproject in the workspace which is not same as the default one.
