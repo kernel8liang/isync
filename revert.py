@@ -1,4 +1,3 @@
-#!/home/deepinsight/anaconda2/bin/python
 import sys
 import os
 import Magic

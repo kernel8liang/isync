@@ -27,8 +27,6 @@ done
 
 #get the workspace
 if [ ! -n "$WORKSPACE" ]; then
-    echo "$DEFAULT_WORKSPACE"
-    echo "$PATH"
     if [ ! -n "$DEFAULT_WORKSPACE" ]; then
         echo "there is no workspace path, give the workspace path with -w or give it by DEFAULT_WORKSPACE enviroment variable";
         exit -1;
@@ -38,8 +36,6 @@ fi
 
 #get the workspace
 if [ ! -n "$USER" ]; then
-    echo "$DEFAULT_USER"
-    echo "$PATH"
     if [ ! -n "$DEFAULT_USER" ]; then
         echo "there is no workspace path, give the workspace path with -w or give it by DEFAULT_USER enviroment variable";
         exit -1;
@@ -84,9 +80,6 @@ python $is_path/prepare.py $WORKSPACE $PROJECT_NAME
 #ssh deepinsight@10.214.129.15 "bash -s" < $is_path/sync_job.sh $WORKSPACE $reclone $PROJECT_NAME
 #echo "deploy 10.214.129.29"
 #ssh deepinsight@10.214.129.29 "bash -s" < $is_path/sync_job.sh $WORKSPACE $reclone $PROJECT_NAME
-
-
-echo $HOSTS_FILE
 
 while read LINE
 do

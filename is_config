@@ -1,0 +1,19 @@
+#!/bin/bash
+
+bashfile=""
+if [ -f ~/.bashrc ]; then
+    bashfile="$HOME/.bashrc"
+elif [ -f ~/.bash_profile]; then
+    bashfile="$HOME/.bash_profile"
+fi
+
+if [ ! -n file ]; then
+    echo "can not find bash file"
+    exit 256
+fi
+
+is_path=`dirname $0`
+
+python $is_path/is_config.py $bashfile $HOME
+
+source $bashfile
