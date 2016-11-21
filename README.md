@@ -10,7 +10,7 @@ I don't like these ways. I need a light, clean, fast way, so write these script.
 
 the principle is simple. use git to control the deploy, every time you make a modification，use git to record which file has been modified. ssh to the remote machines, pull these changes.
 
-where three steps to do so.
+there three steps to do so.
 
 1, save the origin .git file in your project to ./origin_back, when your project inblude other projects as submodule, .git in the submodule will be save to ./origin_back_submoduleName recursively, this is done by paser the .gitmodules file recursively. Then move deploy .git into the project root directory, and fllow "git add", "git push";
 
