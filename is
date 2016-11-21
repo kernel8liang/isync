@@ -1,0 +1,99 @@
+#!/bin/bash
+
+reclone=false
+
+while [ -n "$1" ]
+do
+    case "$1" in
+    -w)  WORKSPACE="$2"
+         shift
+         ;;
+    -n)  PROJECT_NAME="$2"
+         shift
+         ;;
+    -h)  HOSTS_FILE="$2"
+         shift
+         ;;
+    -i)  IP="$2"
+         shift
+         ;;
+    -u)  USER="$2"
+         shift
+         ;;
+    -r)  reclone=true;;
+    esac
+    shift
+done
+
+#get the workspace
+if [ ! -n "$WORKSPACE" ]; then
+    echo "$DEFAULT_WORKSPACE"
+    echo "$PATH"
+    if [ ! -n "$DEFAULT_WORKSPACE" ]; then
+        echo "there is no workspace path, give the workspace path with -w or give it by DEFAULT_WORKSPACE enviroment variable";
+        exit -1;
+    fi
+    WORKSPACE=$DEFAULT_WORKSPACE
+fi
+
+#get the workspace
+if [ ! -n "$USER" ]; then
+    echo "$DEFAULT_USER"
+    echo "$PATH"
+    if [ ! -n "$DEFAULT_USER" ]; then
+        echo "there is no workspace path, give the workspace path with -w or give it by DEFAULT_USER enviroment variable";
+        exit -1;
+    fi
+    USER=$DEFAULT_USER
+fi
+
+
+#get the project your want to deploy
+if [ ! -n "$PROJECT_NAME" ]; then
+    if [ ! -n "$DEFAULT_PROJECT_NAME" ]; then
+        echo "there is no project name, give the project name with -n or give it by DEFAULT_PROJECT_NAME enviroment variable"
+        exit -1
+    fi
+    PROJECT_NAME=$DEFAULT_PROJECT_NAME
+fi
+
+#get the project your want to deploy
+if [ ! -n "$IP" ]; then
+    if [ ! -n "$DEFAULT_IP" ]; then
+        echo "there is no project name, give the project name with -n or give it by DEFAULT_PROJECT_NAME enviroment variable"
+        exit -1
+    fi
+    IP=$DEFAULT_IP
+fi
+
+#get the hosts_file your which contian ips your want to deploy
+if [ ! -n "$HOSTS_FILE" ]; then
+    HOSTS_FILE="$DEFAULT_HOSTS_FILE"
+fi
+
+if [ ! -n "$HOSTS_FILE" ]; then
+    HOSTS_FILE=$WORKSPACE/.hosts
+fi
+
+is_path=`dirname $0`
+
+python $is_path/prepare.py $WORKSPACE $PROJECT_NAME
+#
+#
+#echo "deploy 10.214.129.15"
+#ssh deepinsight@10.214.129.15 "bash -s" < $is_path/sync_job.sh $WORKSPACE $reclone $PROJECT_NAME
+#echo "deploy 10.214.129.29"
+#ssh deepinsight@10.214.129.29 "bash -s" < $is_path/sync_job.sh $WORKSPACE $reclone $PROJECT_NAME
+
+
+echo $HOSTS_FILE
+
+while read LINE
+do
+    echo "deploy " $LINE
+    ssh deepinsight@$LINE "bash -s" < $is_path/sync_job.sh $WORKSPACE $reclone $PROJECT_NAME $IP $USER
+done < $HOSTS_FILE
+
+python $is_path/revert.py $WORKSPACE $PROJECT_NAME
+
+
